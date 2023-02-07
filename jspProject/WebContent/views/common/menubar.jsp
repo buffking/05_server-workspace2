@@ -1,5 +1,11 @@
+<%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	// 로그인 시도 전 menubar.jsp 로딩시 : null
+	// 로그인 성공 후 menubar.jsp 로딩시 : 로그인 성공한 회원의 정보가 담겨있는 Member 객체
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +45,7 @@
 
     <div class="login-area">
     
+    <% if(loginUser == null) { %>
         <!-- case1. 로그인 전 -->
         <form action="/jsp/login.me" method="post">
             <table>
@@ -58,16 +65,17 @@
                 </tr>
             </table>
         </form> 
+        <%}else { %>
     
-        <!-- case2. 로그인 후 
-         
+        <!-- case2. 로그인 후 -->
         <div>
-            <b>xxx 님</b> 의 방문을 환영합니다. <br><br>
+            <b><%= loginUser.getUserName() %> 님</b> 의 방문을 환영합니다. <br><br>
             <div>
                 <a href="#">마이페이지</a>
                 <a href="#">로그아웃</a>
             </div>
-        </div> -->
+        </div> 
+        <%} %>
     
     </div>
 
