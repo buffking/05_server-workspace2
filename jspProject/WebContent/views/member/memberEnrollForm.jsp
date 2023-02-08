@@ -5,6 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    .outer{
+        background-color: black;
+        color: white;
+        width: 1000px;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    #enroll-form table{margin: auto;}
+    #enroll-form input{margin: 5px;}
+</style>
 </head>
 <body>
     <%@ include file = "../common/menubar.jsp" %>
@@ -13,7 +25,7 @@
         <br>
         <h2 align="center">회원가입</h2>
 
-        <form id="enroll-form" action="" method="">
+        <form id="enroll-form" action="<%= contextPath %>/insert.me" method="post">
 
             <table>
                 <tr>

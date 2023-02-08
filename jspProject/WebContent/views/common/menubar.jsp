@@ -7,6 +7,10 @@
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	// 로그인 시도 전 menubar.jsp 로딩시 : null
 	// 로그인 성공 후 menubar.jsp 로딩시 : 로그인 성공한 회원의 정보가 담겨있는 Member 객체
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	// 서비스 요청 전 menubar.jsp 로딩시 : null
+	// 서비스 성공 후 menubar.jsp 로딩시 : alert로 띄워줄 메세지 문구
 %>
 <!DOCTYPE html>
 <html>
@@ -43,6 +47,13 @@
 </style>
 </head>
 <body>
+	<% if(alertMsg != null) { %>
+	<script>
+		alert("<%= alertMsg %>");
+	</script>
+	<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+	
     <h1 align="center">Welcome Junseok World</h1>
 
     <div class="login-area">
@@ -62,10 +73,21 @@
                 <tr>
                     <th colspan="2">
                         <button type="submit">로그인</button>
-                        <button type="button">회원가입</button>
+                        <button type="button" onclick="enrollPage();">회원가입</button>
                     </th>
                 </tr>
             </table>
+            
+            <script>
+            	function enrollPage(){
+            		// location.href = "/jsp/views/member/memberEnrollForm.jsp";
+            		// location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp";
+            		// 웹 애플리케이션의 디렉토리 구조가 URL에 노출되면 보안에 취약
+            		
+            		// 단순한 페이지 요청도 servlet 호출해서 servlet 거쳐갈 것!
+            		location.href = "<%= contextPath %>/enrollForm.me";
+            	}
+            </script>
         </form> 
         <%}else { %>
     
