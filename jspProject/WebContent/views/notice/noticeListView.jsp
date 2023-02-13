@@ -35,10 +35,13 @@
         <br>
 
         <!-- 현재 로그인한 사용자가 관리자일 경우(admin) 보여질 div -->
+        <% if(loginUser != null && loginUser.getUserId().equals("admin")) {%>
         <div align="right" style="width: 850px;" >
-            <button>글작성</button>
+            <!-- <button onclick="location.href = '요청할 url'">글작성</button> -->
+            <a href = "<%= contextPath %>/enrollForm.no" class = "btn btn-sm btn-secondary">글작성</a>
             <br><br>
         </div>
+		<% } %>
 
         <table class="list-area" align="center">
             <thead>
@@ -71,7 +74,7 @@
 				<%} %>
             </tbody>
         </table>
-
+		
     </div>
 
 </body>

@@ -1,8 +1,15 @@
-UPDATE MEMBER
-    SET USER_NAME = ?
-      , PHONE = ?
-      , EMAIL = ?
-      , ADDRESS = ?
-      , INTEREST = ?
-      , MODIFY_DATE = SYSDATE
-WHERE   USER_ID = ?
+INSERT
+  INTO NOTICE
+  (
+     NOTICE_NO
+  ,  NOTICE_TITLE
+  ,  NOTICE_CONTENT
+  ,  NOTICE_WRITER
+  )
+  VALUES
+  (
+     SEQ_NNO.NEXTVAL
+  ,  ?
+  ,  ?
+  ,  ?
+  )
