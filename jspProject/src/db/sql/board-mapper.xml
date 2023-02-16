@@ -82,7 +82,7 @@
 	INSERT 
 	  INTO ATTACHMENT
 	  (
-	    FILE_NO
+	    FILE_NO1
 	  , REF_BNO
 	  , ORIGIN_NAME
 	  , CHANGE_NAME

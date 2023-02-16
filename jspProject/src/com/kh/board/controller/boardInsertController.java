@@ -126,15 +126,11 @@ public class boardInsertController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
 			}else {
 				// 빨간거
+				request.setAttribute("errorMsg", "님 잘못씀");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 			
 		}
-
-		
-		
-		
-		
 		
 	}
 
