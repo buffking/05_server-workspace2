@@ -13,6 +13,10 @@ import static com.kh.common.JDBCTemplate.*;
 
 public class BoardService {
 	
+	/**
+	 * 일반게시판 조회수 조회
+	 * @return
+	 */
 	public int selectListCount() {
 		Connection conn = getConnection();
 		
@@ -22,6 +26,12 @@ public class BoardService {
 		return listCount;
 	}
 	
+	
+	/**
+	 * 일반게시판 목록 조회
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<Board> selectList(PageInfo pi) {
 		Connection conn = getConnection();
 		
@@ -31,6 +41,11 @@ public class BoardService {
 		return list;
 	}
 	
+	/**
+	 * 일반게시판 목록 조회 테스트
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<Board> selectListTest(PageInfo pi) {
 		Connection conn = getConnection();
 		
@@ -40,6 +55,10 @@ public class BoardService {
 		return list;
 	}
 	
+	/**
+	 * 카테고리 리스트
+	 * @return
+	 */
 	public ArrayList<Category> selectCategoryList(){
 		Connection conn = getConnection();
 		
@@ -50,6 +69,12 @@ public class BoardService {
 		
 	}
 	
+	/**
+	 * 일반게시판 작성하기
+	 * @param b
+	 * @param at
+	 * @return
+	 */
 	public int insertBoard(Board b, Attachment at) {
 		Connection conn = getConnection();
 		
@@ -71,6 +96,11 @@ public class BoardService {
 		
 	}
 	
+	/**
+	 * 일반게시판 조회수 증가
+	 * @param boardNo
+	 * @return
+	 */
 	public int increaseCount(int boardNo) {
 		Connection conn = getConnection();
 		
@@ -86,6 +116,11 @@ public class BoardService {
 		return result;
 	}
 	
+	/**
+	 * 일반게시판 게시글 조회
+	 * @param boardNo
+	 * @return
+	 */
 	public Board selectBoard(int boardNo) {
 		Connection conn = getConnection();
 		
@@ -95,6 +130,11 @@ public class BoardService {
 		return b;
 	}
 	
+	/**
+	 * 첨부파일 수정
+	 * @param boardNo
+	 * @return
+	 */
 	public Attachment selectAttachment(int boardNo) {
 		Connection conn = getConnection();
 		
@@ -102,6 +142,40 @@ public class BoardService {
 		
 		close(conn);
 		return at;
+	}
+	
+	/**
+	 * 게시판 수정
+	 * @param b
+	 * @param at
+	 * @return
+	 */
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().updateBoard(conn, b);
+		
+		int result2 = 1;
+		
+		if(at != null) { // 새로운 첨부파일이 있었을 경우
+			
+			if(at.getFileNo() != 0) { // 기존의 첨부파일이 있었을 경우
+				result2 = new BoardDao().updateAttachment(conn, at);
+			}else { // 기존의 첨부파일이 없는 경우 new!!
+				result2 = new BoardDao().insertNewAttachment(conn, at);
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2;
+		
+		
 	}
 	
 	
