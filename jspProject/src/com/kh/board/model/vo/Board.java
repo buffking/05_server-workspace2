@@ -12,6 +12,8 @@ public class Board {
 	private String createDate; // to_date 써보기에 위해 String으로 해보자
 	private String status;
 	
+	private String titleImg;
+	
 	public Board() {}
 
 	public Board(int boardNo, int boardType, String categoryNo, String boardTitle, String boardContent,
@@ -27,7 +29,7 @@ public class Board {
 		this.createDate = createDate;
 		this.status = status;
 	}
-
+	
 	public Board(int boardNo, String categoryNo, String boardTitle, String boardWriter, int count, String createDate) {
 		super();
 		this.boardNo = boardNo;
@@ -47,6 +49,16 @@ public class Board {
 		this.boardContent = boardContent;
 		this.boardWriter = boardWriter;
 		this.createDate = createDate;
+	}
+	
+	
+
+	public Board(int boardNo, String boardTitle, int count, String titleImg) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.count = count;
+		this.titleImg = titleImg;
 	}
 
 	public int getBoardNo() {
@@ -119,6 +131,14 @@ public class Board {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	@Override

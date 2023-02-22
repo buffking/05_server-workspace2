@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
     <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <!-- Popper JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -123,7 +123,7 @@
         <div class="menu"><a href="<%= contextPath %>">HOME</a></div>
         <div class="menu"><a href="<%= contextPath %>/list.no">공지사항</a></div>
         <div class="menu"><a href="<%= contextPath %>/list.bo?cpage=1">일반게시판</a></div>
-        <div class="menu"><a href="#">사진게시판</a></div>
+        <div class="menu"><a href="<%= contextPath %>/list.th">사진게시판</a></div>
         <div class="menu"><a href="<%= contextPath %>/list.boo?cpage=1">게시판2</a></div>
     </div>
     
