@@ -1,21 +1,22 @@
 package com.kh.board.model.vo;
 
+
 public class Board {
-	
+	// 필드부
 	private int boardNo;
 	private int boardType;
-	private String categoryNo; // 작성기능시 카테고리 번호 | 조회기능시 카테고리명
+	private String categoryNo; // 작성 기능 시 카테고리번호| 조회 기능 시 카테고리명
 	private String boardTitle;
 	private String boardContent;
-	private String boardWriter; // 작성기능시 회원번호 | 조회기능시 회원아이디
+	private String boardWriter;
 	private int count;
-	private String createDate; // to_date 써보기에 위해 String으로 해보자
+	private String createDate; // TO_DATE 쓰기 위해서 String
 	private String status;
-	
 	private String titleImg;
 	
+	// 생성자부
 	public Board() {}
-
+	
 	public Board(int boardNo, int boardType, String categoryNo, String boardTitle, String boardContent,
 			String boardWriter, int count, String createDate, String status) {
 		super();
@@ -50,8 +51,6 @@ public class Board {
 		this.boardWriter = boardWriter;
 		this.createDate = createDate;
 	}
-	
-	
 
 	public Board(int boardNo, String boardTitle, int count, String titleImg) {
 		super();
@@ -61,6 +60,7 @@ public class Board {
 		this.titleImg = titleImg;
 	}
 
+	// 메소드부
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -133,6 +133,8 @@ public class Board {
 		this.status = status;
 	}
 	
+	
+
 	public String getTitleImg() {
 		return titleImg;
 	}
@@ -147,8 +149,4 @@ public class Board {
 				+ boardTitle + ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
 				+ ", createDate=" + createDate + ", status=" + status + "]";
 	}
-	
-	
 }
-
-

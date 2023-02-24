@@ -31,10 +31,9 @@ public class LogoutController extends HttpServlet {
 		// HttpSession session = request.getSession();
 		// session.invalidate();
 		
-		// 위의 두 줄을 한 줄로!
-		request.getSession().invalidate();
+		request.getSession().invalidate(); // 세션을 무효화시키는 메소드 한 줄로 줄이기
 		
-		// 응답페이지 => index 페이지 => url 재요청
+		// 응답 페이지 == index 페이지 => url 재요청
 		// response.sendRedirect("/jsp");
 		response.sendRedirect(request.getContextPath());
 	}
@@ -43,7 +42,6 @@ public class LogoutController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

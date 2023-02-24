@@ -1,144 +1,149 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-    .outer{
-        background-color: black;
-        color: white;
-        width: 1000px;
-        margin: auto;
-        margin-top: 50px;
-    }
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <!DOCTYPE html>
+    <html>
 
-    #enroll-form table{margin: auto;}
-    #enroll-form input{margin: 5px;}
-</style>
-</head>
-<body>
-    <%@ include file = "../common/menubar.jsp" %>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+        <style>
+            .outer{
+                background-color: black;
+                color: white;
+                width: 1000px;
+                margin: auto;
+                margin-top: 50px;
+            }
 
-    <div class="outer">
-        <br>
-        <h2 align="center">회원가입</h2>
+            #enroll-form table{margin: auto;}
 
-        <form id="enroll-form" action="<%= contextPath %>/insert.me" method="post">
+            #enroll-form input{margin: 5px;}
+        </style>
+    </head>
 
-            <table>
-                <tr>
-                    <td>* 아이디</td>
-                    <td><input type="text" name="userId" maxlength="12" required></td>
-                    <td><button type="button" onclick="idCheck();">중복확인</button></td>
-                </tr>
-                <tr>
-                    <td>* 비밀번호</td>
-                    <td><input type="password" name="userPwd" maxlength="15" required></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>* 비밀번호 확인</td>
-                    <td><input type="password" maxlength="15" required></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>* 이름</td>
-                    <td><input type="text" name="userName" maxlength="6" required></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;&nbsp;전화번호</td>
-                    <td><input type="text" name="phone" placeholder="- 포함해서 입력"></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;&nbsp;이메일</td>
-                    <td><input type="email" name="email"></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;&nbsp;주소</td>
-                    <td><input type="text" name="address"></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;&nbsp;관심분야</td>
-                    <td colspan="2">
-                        <input type="checkbox" name="interest" id="sports" value="운동">
-                        <label for="sports">운동</label>
+    <body>
+        <%@ include file="../common/menubar.jsp" %>
 
-                        <input type="checkbox" name="interest" id="hiking" value="등산">
-                        <label for="hiking">등산</label>
+            <div class="outer">
+                <br>
+                <h2 align="center">회원가입</h2>
+                <form id="enroll-form" action="<%= contextPath %>/insert.me" method="post">
 
-                        <input type="checkbox" name="interest" id="fishing" value="낚시">
-                        <label for="fishing">낚시</label>
-                        <br>
-                        <input type="checkbox" name="interest" id="cooking" value="요리">
-                        <label for="cooking">요리</label>
+                    <table>
+                        <tr>
+                            <td>* 아이디</td>
+                            <td><input type="text" name="userId" maxlength="12" required></td>
+                            <td><button type="button" onclick="idCheck();">중복확인</button></td>
+                        </tr>
+                        <tr>
+                            <td>* 비밀번호</td>
+                            <td><input type="password" name="userPwd" maxlength="15" required></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>* 비밀번호 확인</td>
+                            <td><input type="password" maxlength="15" required></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>* 이름</td>
+                            <td><input type="text" name="userName" maxlength="6" required></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;전화번호</td>
+                            <td><input type="text" name="phone" placeholder="- 포함해서 입력"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;이메일</td>
+                            <td><input type="email" name="email"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;주소</td>
+                            <td><input type="text" name="address"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;관심분야</td>
+                            <td colspan="2">
+                                <input type="checkbox" name="interest" id="sports" value="운동">
+                                <label for="sports">운동</label>
 
-                        <input type="checkbox" name="interest" id="game" value="게임">
-                        <label for="game">게임</label>
+                                <input type="checkbox" name="interest" id="hiking" value="등산">
+                                <label for="hiking">등산</label>
 
-                        <input type="checkbox" name="interest" id="movie" value="영화">
-                        <label for="movie">영화</label>
-                    </td>
-                </tr>
-            </table>
+                                <input type="checkbox" name="interest" id="fishing" value="낚시">
+                                <label for="fishing">낚시</label>
+                                <br>
+                                <input type="checkbox" name="interest" id="cooking" value="요리">
+                                <label for="cooking">요리</label>
 
-            <br><br>
+                                <input type="checkbox" name="interest" id="game" value="게임">
+                                <label for="game">게임</label>
 
-            <div align="center">
-                <button type="submit" disabled>회원가입</button>
-                <button type="reset">초기화</button>
+                                <input type="checkbox" name="interest" id="movie" value="영화">
+                                <label for="movie">영화</label>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br><br>
+
+                    <div align="center">
+                        <button type="submit" disabled>회원가입</button>
+                        <button type="reset" onclick="readonlyFalse();">초기화</button>
+                    </div>
+
+                    <br>
+
+                </form>
             </div>
+            
+            <script>
+            	function readonlyFalse(){
+            		const $idInput = $("#enroll-form input[name=userId]");
+            		$idInput.removeAttr("readonly");
+            		$idInput.removeAttr("readonly").focus();
+            	}
+            	
+            	function idCheck(){
+            		// 중복 확인 클릭 시 사용자가 입력한 아이디 값을 넘겨서 조회요청 후 응답데이터 돌려받기
+            		// 1) 사용불가능(NNNNN)일 경우 => alert 출력, 다시 입력할 수 있도록 유도
+            		// 2) 사용가능(NNNNY)일 경우 => 진짜 사용할 것인지 의사를 물어볼 것(confirm 메소드)
+            		//						=> 사용하는 경우 => 더이상 아이디 수정 못하게끔 픽스, 회원가입 버튼 활성화
+            		//						=> 사용한하겠다는 유도 => 다시 입력하도록 유도
+            		
+            		// 입력한 아이디 input 요소 객체
+            		const $idInput = $("#enroll-form input[name=userId]");
+            		
+            		$.ajax({
+            			url:"idCheck.me",
+            			data:{checkId:$idInput.val()},
+            			success:function(result){
+            				if(result == "NNNNN"){
+                				alert("이미 사용하고 있는 아이디 입니다.");
+                				$idInput.val("");
+                				$idInput.focus();
+                			} else if(result == "NNNNY"){
+                				if(confirm("사용하실 수 있는 아이디입니다. 사용하시겠습니까?")){
+                					// $("button[type=submit]").removeAttr("disabled");
+                					// $("#enroll-form :submit").attr("disabled", false);
+                					$("#enroll-form :submit").removeAttr("disabled");
+                					$idInput.attr("readonly", true);
+                				} else{
+                					$idInput.val("");
+                    				$idInput.focus();
+                				}
+                			}
+            				
+            			},
+            			error:function(){
+            				console.log("아이디 중복체크용 ajax 통신 실패");
+            			}
+            		})
+            	}
+            </script>
+    </body>
 
-            <br>
-
-        </form>
-    </div>
-    
-    <script>
-    	function idCheck() {
-			// 중복확인 버튼 클릭시 사용자가 입력한 값을 넘겨서 조회 요청(존재하는지 안하는지) => 응답데이터 돌려받기
-			// 1) 사용불가능(NNNNN)일 경우 => alert로 메세지 출력, 다시 입력할 수 있도록 유도
-			// 2) 가용 가능 (NNNNY)일 경우 => 진짜 사용할껀지 의사를 물어볼꺼임 (confrim 메소드)
-			// 						  => 사용하겠다는 경우 => 더이상 아이디 수정 못하게끔 픽스, 회원가입 버튼 활성화
-			// 						  => 사용안하겠다는 경우 => 다시 입력할 수 있도록 유도 
-			
-			// 입력한 아이디 input 요소 객체
-			const $idInput = $("#enroll-form input[name=userId]");
-			const $submit = $("#enroll-form button[type=submit]")
-			
-			$.ajax({
-				url:"idCheck.me",
-				data:{checkId:$idInput.val()},
-				success:function(result){
-					if(result == "NNNNN"){
-						alert("중복입니다.");
-						$idInput.focus();
-						$idInput.val("");
-					}else{
-						if(confirm("진짜쓸꺼니?")){
-							$idInput.attr("readonly", true);
-							$submit.removeAttr("disabled");
-						}else{
-							$idInput.focus();
-							$idInput.val("");
-						}
-						
-					}
-					console.log(result);
-				},
-				error:function(){
-					console.log("아이디 중복체크용 ajax 통신 실패!");
-				}
-				
-			});
-		}
-    	
-    </script>
-
-</body>
-</html>
+    </html>

@@ -2,9 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-%>
+<% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,67 +29,46 @@
         display: inline-block;
         margin: 14px;
     }
+    
     .thumbnail:hover{
-    	cursor:pointer;
-    	opacity:0.7;
+    	cursor: pointer;
+    	opacity: 0.7;
     }
 </style>
 </head>
 <body>
-	<%@ include file = "../common/menubar.jsp" %>
-
+	<%@ include file="../common/menubar.jsp" %>
     <div class="outer">
         <br>
         <h2 align="center">사진게시판</h2>
         <br>
 
 		<% if(loginUser != null) { %>
-        <!-- 로그인한 회원만 보여지게 -->
-        <div align="right" style="width: 850px;">
-            <a href="<%= contextPath %>/enrollForm.th" class="btn btn-sm btn-secondary">글작성</a>
-        </div>
-        <% } %>
-
+	        <!-- 로그인한 회원만 보여지게 -->
+	        <div align="right" style="width: 850px;">
+	            <a href="<%= contextPath %>/enrollForm.th" class="btn btn-sm btn-secondary">글작성</a>
+	        </div>
+		<% } %>
         <div class="list-area">
-        	<% for(Board b : list) { %>
             <!-- 썸네일 한개 -->
-            <div class="thumbnail" align="center">
-            	<input type = "hidden" value = "<%= b.getBoardNo() %>">
-                <img src="<%= b.getTitleImg() %>" width="200" height="150">
-                <p>
-                    No.<%= b.getBoardNo() %> <%= b.getBoardTitle() %><br>
-                    조회수 : <%= b.getCount() %>
-                </p>
-            </div>
-           <% } %>
+            <% for(Board b : list) { %>
+	            <div class="thumbnail" align="center">
+	            <input type="hidden" value="<%= b.getBoardNo() %>">
+	                <img src="<%= b.getTitleImg() %>" width="200" height="150">
+	                <p>
+	                    <%= "No." + b.getBoardNo() + " " + b.getBoardTitle() %> <br>
+	                    조회수: <%= b.getCount() %>
+	                </p>
+	            </div>
+			<% } %>
+            
         </div>
-
     </div>
     
     <script>
     	$(".thumbnail").click(function(){
-    		location.href = "<%= contextPath%>/detail.th?bno=" + $(this).children("input").val();
+    		location.href="<%=contextPath%>/detail.th?bno=" + $(this).children("input").val();
     	})
-    		
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</body>	
+</body>
 </html>

@@ -3,6 +3,7 @@ package com.kh.board.model.vo;
 import java.sql.Date;
 
 public class Attachment {
+	
 	private int fileNo;
 	private int refBno;
 	private String originName;

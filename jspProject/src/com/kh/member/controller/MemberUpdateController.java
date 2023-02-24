@@ -16,7 +16,7 @@ import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class MemberUpdateController
  */
-@WebServlet({ "/MemberUpdateController", "/update.me" })
+@WebServlet("/update.me")
 public class MemberUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +35,7 @@ public class MemberUpdateController extends HttpServlet {
 		// 인코딩 설정
 		request.setCharacterEncoding("UTF-8");
 		
-		// 요청시 전달 값 뽑아서 변수 및 객체에 담기
+		// 요청 시 전달 값 뽑아서 변수 및 객체에 담기
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
 		String phone = request.getParameter("phone");
@@ -44,7 +44,8 @@ public class MemberUpdateController extends HttpServlet {
 		String[] interestArr = request.getParameterValues("interest");
 		
 		String interest = "";
-		if(interestArr != null) {
+		
+		if (interestArr != null) {
 			interest = String.join(",", interestArr);
 		}
 		
@@ -55,25 +56,21 @@ public class MemberUpdateController extends HttpServlet {
 		
 		if(updateMem == null) { // 실패
 			// 에러문구 담아서 에러페이지 포워딩
-			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다!");
+			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
+			
 			RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
 			view.forward(request, response);
-			
-		}else { // 성공
+		} else { // 성공
 			// 성공했다는 alert => 마이페이지 url 재요청
-			
-			// session에 담겨있는 loginUser 바꿔치기 작업
+			// session에 담겨있는 loginUser 바꾸는 작업
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", updateMem);
+			
 			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정했습니다.");
 			
-			// 마이페이지 => /jsp/myPage.me url 재요청!!!
+			// 마이페이지 => /jsp/myPage.me로 url 재요청
 			response.sendRedirect(request.getContextPath() + "/myPage.me");
-			
 		}
-		
-		
-		
 	}
 
 	/**

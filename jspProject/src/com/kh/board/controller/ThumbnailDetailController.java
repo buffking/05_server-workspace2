@@ -32,27 +32,24 @@ public class ThumbnailDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
-		// 조회수 증가, 게시글 조회, 첨부파일 조회
+		// 조회수 증가, 게시글, 첨부파일 조회
 		BoardService bService = new BoardService();
+		
 		int result = bService.increaseCount(boardNo);
 		
-		if(result > 0) { // 유효한 게시글 => 상세페이지
-			
+		if(result > 0 ) { // 유효한 게시글 => 상세페이지
 			Board b = bService.selectBoard(boardNo);
+			
 			ArrayList<Attachment> list = bService.selectAttachmentList(boardNo);
 			
 			request.setAttribute("b", b);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/thumbnailDetailView.jsp").forward(request, response);
-					
 			
-			
-			
-		}else {
+		} else {
 			
 		}
 		

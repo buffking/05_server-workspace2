@@ -33,13 +33,14 @@ public class NoticeDeleteController extends HttpServlet {
 		int result = new NoticeService().deleteNotice(noticeNo);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 삭제 되었습니다.");
+			request.getSession().setAttribute("alertMsg", "삭제 완료");
+			
 			response.sendRedirect(request.getContextPath() + "/list.no");
-		}else {
-			request.setAttribute("errorMsg", "공지사항 삭제 실패!");
+		} else {
+			request.setAttribute("errorMsg", "삭제 실패");
+			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

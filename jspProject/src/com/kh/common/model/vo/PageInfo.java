@@ -1,15 +1,15 @@
 package com.kh.common.model.vo;
 
 public class PageInfo {
-	int listCount;		// 현재 총 게시글 개수
-	int currentPage;	// 현재 페이지 (즉, 사용자가 요청한 페이지)
-	int pageLimit;		// 페이지 하단에 보여질 페이징바의 페이지 최대개수 (몇개 단위씩 배치) 1 2 3 4 ...
-	int boardLimit;		// 한 페이지 내에 보여질 게시글 최대 개수 (몇개 단위씩)
+	int listCount; 		// 현재 총 게시글 개수
+	int currentPage;	// 현재 페이지(사용자가 요청한 페이지)
+	int pageLimit; 		// 페이지 하단에 보여질 페이징바의 페이지 최대 개수(몇개 단위 씩 배치할 건지)
+	int boardLimit; 	// 한 페이지 내에 보여질 최대 개수(몇개 단위 씩)
 	int maxPage;		// 가장 마지막 페이지(총 페이지 수)
-	int startPage;		// 페이징바의 시작수
-	int endPage;		// 페이징바의 끝수
+	int startPage;		// 페이징바의 시작 수
+	int endPage;		// 페이징바의 끝 수
 	
-	PageInfo() {}
+	public PageInfo() {}
 
 	public PageInfo(int listCount, int currentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
 			int endPage) {

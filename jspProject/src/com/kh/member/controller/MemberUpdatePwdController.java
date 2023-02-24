@@ -1,8 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,24 +30,24 @@ public class MemberUpdatePwdController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 한글이 없으니 인코딩 생략
+		// 인코딩 (BUT, 한글 안나올예정으로 인코딩 생략)
+		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String updatePwd = request.getParameter("updatePwd");
 		
 		Member updateMem = new MemberService().updatePwd(userId, userPwd, updatePwd);
+		
 		HttpSession session = request.getSession();
 		
-		if(updateMem == null) { // 실패
-			session.setAttribute("alertMsg", "비밀번호 변경에 실패했습니다.");
-		}else { // 성공
-			session.setAttribute("alertMsg", "성공적으로 비밀번호 변경됐습니다.");
+		if(updateMem == null) {
+			session.setAttribute("alertMsg", "비밀번호 변경 실패");
+		} else {
+			session.setAttribute("alertMsg", "비밀번호 변경 완료");
 			session.setAttribute("loginUser", updateMem);
+			
 		}
-		
 		response.sendRedirect(request.getContextPath() + "/myPage.me");
-		
-		
 	}
 
 	/**

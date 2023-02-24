@@ -26,18 +26,16 @@ public class JqAjaxController1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String str = request.getParameter("input");
-		// System.out.println("요청시 전달값 : " + str);
 		
-		// 요청 처리 다했다는 가정하에 응답할 데이터 
-		String responseData = "입력된 값 -" + str + ", 길이 - " + str.length();
+		// System.out.println("요청 시 전달값: " + str);
+		
+		// 요청처리 다했다는 가정하에 응답할 데이터
+		String responseData = "입력된 값 - " + str + ", 길이 - " + str.length();
 		
 		// 응답데이터 돌려주기
 		response.setContentType("text/html; charset=UTF-8"); // 한글이 있다면 인코딩 처리
 		response.getWriter().print(responseData);
-		
-		
 	}
 
 	/**

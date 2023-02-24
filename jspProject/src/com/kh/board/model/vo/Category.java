@@ -1,6 +1,7 @@
 package com.kh.board.model.vo;
 
 public class Category {
+
 	private int categoryNo;
 	private String categoryName;
 	
@@ -32,6 +33,4 @@ public class Category {
 	public String toString() {
 		return "Category [categoryNo=" + categoryNo + ", categoryName=" + categoryName + "]";
 	}
-	
-	
 }

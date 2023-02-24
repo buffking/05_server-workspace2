@@ -30,13 +30,15 @@ public class BoardDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
 		BoardService bService = new BoardService();
+		
 		int result = bService.increaseCount(boardNo);
 		
 		if(result > 0) { // 유효한 게시글 => 게시글, 첨부파일 조회 => 상세조회 페이지
-			
 			Board b = bService.selectBoard(boardNo);
 			Attachment at = bService.selectAttachment(boardNo);
 			
@@ -44,13 +46,10 @@ public class BoardDetailController extends HttpServlet {
 			request.setAttribute("at", at);
 			
 			request.getRequestDispatcher("views/board/boardDetailView.jsp").forward(request, response);
-			
-		}else {
-			// 빨간거
-			request.setAttribute("errorMsg", "일반게시판 상세조회 실패!");
+		} else {
+			request.setAttribute("errorMsg", "일반게시판 상세조회 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

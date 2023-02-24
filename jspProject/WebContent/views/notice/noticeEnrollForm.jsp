@@ -22,13 +22,11 @@
 </style>
 </head>
 <body>
-    <%@ include file = "../common/menubar.jsp" %>
-
+    <%@ include file="../common/menubar.jsp" %>
     <div class="outer" align="center">
         <br>
-        <h2 align="center">공지사항 작성하기</h2>
+        <h2 align="center">공지사항 작성</h2>
         <br>
-
         <form action="<%= contextPath %>/insert.no" id="enroll-form" method="post">
             <table>
                 <tr>
@@ -47,17 +45,13 @@
                     </td>
                 </tr>
             </table>
-
             <br><br>
             <div>
                 <button type="submit">등록하기</button>
                 <button type="reset">초기화</button>
                 <button type="button" onclick="history.back();">뒤로가기</button>
             </div>
-
         </form>
-
     </div>
-
 </body>
 </html>

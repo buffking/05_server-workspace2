@@ -31,17 +31,14 @@ public class ThumbnailListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// thumbnailListView.jsp 상에 필요한 데이터 조회해서 가야함
+		Board b = null;
 		
-		// thumbnailListView.jsp 상에 필요한 데이터 조회해서 가야됨
-		// 리스트 담아서 thumbnailListView.jsp 로 가기
 		ArrayList<Board> list = new BoardService().selectThumbnailList();
 		
 		request.setAttribute("list", list);
+		
 		request.getRequestDispatcher("views/board/thumbnailListView.jsp").forward(request, response);
-		
-		
-		
-		
 	}
 
 	/**

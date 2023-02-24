@@ -3,7 +3,6 @@ package com.kh.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	
 	// 필드부 선언
 	private int userNo;
 	private String userId;
@@ -17,9 +16,9 @@ public class Member {
 	private Date modifyDate;
 	private String status;
 	
-	// 기본생성자, 매개변수생성자, setter/getter, toString
-	public Member() {}
-
+	// 생성자부
+	public Member() {};
+	
 	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
 			String address, String interest, Date enrollDate, Date modifyDate, String status) {
 		super();
@@ -35,7 +34,7 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
-	
+
 	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
 			String interest) {
 		super();
@@ -47,8 +46,6 @@ public class Member {
 		this.address = address;
 		this.interest = interest;
 	}
-	
-	
 
 	public Member(String userId, String userName, String phone, String email, String address, String interest) {
 		super();
@@ -60,6 +57,7 @@ public class Member {
 		this.interest = interest;
 	}
 
+	// 메소드부
 	public int getUserNo() {
 		return userNo;
 	}
@@ -150,9 +148,9 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+		return "userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
+				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status;
 	}
-	
+
 }

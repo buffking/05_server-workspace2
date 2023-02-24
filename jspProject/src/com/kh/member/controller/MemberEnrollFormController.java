@@ -30,7 +30,6 @@ public class MemberEnrollFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 응답페이지 (회원가입 페이지)
 		// 포워딩 방식
-		
 		RequestDispatcher view = request.getRequestDispatcher("views/member/memberEnrollForm.jsp");
 		view.forward(request, response);
 	}

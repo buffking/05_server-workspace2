@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	Notice n = (Notice)request.getAttribute("n");
-%>
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,15 +26,13 @@
 </style>
 </head>
 <body>
-    <%@ include file = "../common/menubar.jsp" %>
-
+    <%@ include file="../common/menubar.jsp" %>
     <div class="outer" align="center">
         <br>
         <h2 align="center">공지사항 수정하기</h2>
         <br>
-
         <form action="<%= contextPath %>/update.no" id="update-form" method="post">
-            <input type = "hidden" name = "num" value = "<%= n.getNoticeNo() %>">
+            <input type="hidden" name="num" value="<%= n.getNoticeNo() %>">
             <table>
                 <tr>
                     <th width="50">제목</th>
@@ -48,19 +46,17 @@
 
                 <tr>
                     <td colspan="2">
-                        <textarea name="content" rows="10" style="resize: none;" required ><%= n.getNoticeContent() %></textarea>
+                        <textarea name="content" rows="10" style="resize: none;" required><%= n.getNoticeContent() %></textarea>
                     </td>
                 </tr>
             </table>
-
             <br><br>
             <div>
                 <button type="submit">수정하기</button>
                 <button type="button" onclick="history.back();">뒤로가기</button>
             </div>
-
+            
         </form>
-
     </div>
 </body>
 </html>

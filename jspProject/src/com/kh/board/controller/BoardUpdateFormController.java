@@ -37,6 +37,7 @@ public class BoardUpdateFormController extends HttpServlet {
 		
 		// 카테고리, 게시글, 첨부파일
 		BoardService bService = new BoardService();
+		
 		ArrayList<Category> list = bService.selectCategoryList();
 		Board b = bService.selectBoard(boardNo);
 		Attachment at = bService.selectAttachment(boardNo);
@@ -46,9 +47,6 @@ public class BoardUpdateFormController extends HttpServlet {
 		request.setAttribute("at", at);
 		
 		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
-		
-		
-		
 	}
 
 	/**

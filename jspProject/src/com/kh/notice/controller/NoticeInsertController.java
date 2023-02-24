@@ -1,8 +1,6 @@
 package com.kh.notice.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,21 +31,20 @@ public class NoticeInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 인코딩
+		// 1) 인코딩
 		request.setCharacterEncoding("UTF-8");
 		
 		String noticeTitle = request.getParameter("title");
 		String noticeContent = request.getParameter("content");
 		
-		// 로그인한 회원 정보를 얻어내는 방법
-		// 1. input type = "hidden" 으로 애초에 요청시 숨겨서 전달하기
+		// 로그인 한 회원정보를 얻어내는 방법
+		// 1. input type = "hidden"으로 애초에 요청 시 숨겨서 전달
 		// 2. session에 담겨있는 loginUser 활용하는 방법
-		
 		HttpSession session = request.getSession();
+		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
 		Notice n = new Notice();
-		
 		n.setNoticeTitle(noticeTitle);
 		n.setNoticeContent(noticeContent);
 		// n.setNoticeWriter(userNo + "");
@@ -55,12 +52,14 @@ public class NoticeInsertController extends HttpServlet {
 		
 		int result = new NoticeService().insertNotice(n);
 		
-		if(result > 0) { // 성공 => 목록조회 화면으로 url 재요청
-			response.sendRedirect(request.getContextPath() + "/list.no");
-		}else { // 실패 => 에러문구(공지사항 등록 실패!) 담아서 에러메세지 포워딩(에러페이지)
+		if(result > 0) {
+			session.setAttribute("alertMsg", "공지사항이 작성되었습니다.");
+			
+			response.sendRedirect(request.getContextPath()+"/list.no");
+		} else {
 			request.setAttribute("errorMsg", "공지사항 등록 실패");
-			RequestDispatcher view = request.getRequestDispatcher("/views/common/errorPage.jsp");
-			view.forward(request, response);
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
 	}
