@@ -634,4 +634,6 @@ public class BoardDao {
 		
 		return result;
 	}
+	
+
 }

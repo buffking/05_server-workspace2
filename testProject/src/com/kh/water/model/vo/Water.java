@@ -1,16 +1,18 @@
 package com.kh.water.model.vo;
 
 public class Water {
+
+	
 	private int waterNo;
-	private String waterBrand;
+	private String brand;
 	private int price;
 	
 	public Water() {}
 
-	public Water(int waterNo, String waterBrand, int price) {
+	public Water(int waterNo, String brand, int price) {
 		super();
 		this.waterNo = waterNo;
-		this.waterBrand = waterBrand;
+		this.brand = brand;
 		this.price = price;
 	}
 
@@ -22,12 +24,12 @@ public class Water {
 		this.waterNo = waterNo;
 	}
 
-	public String getWaterBrand() {
-		return waterBrand;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setWaterBrand(String waterBrand) {
-		this.waterBrand = waterBrand;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 	public int getPrice() {
@@ -40,8 +42,9 @@ public class Water {
 
 	@Override
 	public String toString() {
-		return "Water [waterNo=" + waterNo + ", waterBrand=" + waterBrand + ", price=" + price + "]";
+		return "Water [waterNo=" + waterNo + ", brand=" + brand + ", price=" + price + "]";
 	}
+	
 	
 	
 	

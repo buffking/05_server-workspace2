@@ -1,8 +1,6 @@
 package com.kh.water.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import com.kh.water.model.service.WaterService;
 import com.kh.water.model.vo.Water;
 
 /**
- * Servlet implementation class WaterUpdatePageController
+ * Servlet implementation class WaterInsertController
  */
-@WebServlet("/updatePage.wa")
-public class WaterUpdatePageController extends HttpServlet {
+@WebServlet("/wInsert.wo")
+public class WaterInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WaterUpdatePageController() {
+    public WaterInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +29,30 @@ public class WaterUpdatePageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		ArrayList<Water> list = new WaterService().selectWater();
-		System.out.println(list);
-		
-		
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/water/update.jsp").forward(request, response);
 	
+		request.setCharacterEncoding("utf-8");
+	
+		// 가져오는건 jsp name 키값
+		
+		String waterName = request.getParameter("waterName");
+		int waterPrice = Integer.parseInt(request.getParameter("waterPrice"));
+		
+		Water w = new Water();
+		
+		w.setBrand(waterName);
+		
+		w.setPrice(waterPrice);
+		
+		int result = new WaterService().insertWater(w);
+		
+//		if(result>0) {
+//		
+//			response.sendRedirect(request.getContextPath());
+//		}else {
+//			request.setAttribute("errorPage", "상품넣기 실패");
+//			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+//		}
+		
 	}
 
 	/**

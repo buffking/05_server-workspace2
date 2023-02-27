@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.water.model.service.WaterService;
+import com.kh.water.model.vo.Water;
 
 /**
  * Servlet implementation class WaterUpdateController
  */
-@WebServlet("/update.wa")
+@WebServlet("/wUpdate.wo")
 public class WaterUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,14 +29,39 @@ public class WaterUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		
+		
 		request.setCharacterEncoding("utf-8");
 		
-		String brand = request.getParameter("brand");
-		int price = Integer.parseInt(request.getParameter("price"));
-		int waterNo = Integer.parseInt(request.getParameter("waterNo"));
+		int updateWaterNum = Integer.parseInt(request.getParameter("updateWaterNum"));
 		
-		int result = new WaterService().updateWater(brand, price, waterNo);
+		String reName = request.getParameter("reName");
+		int rePrice = Integer.parseInt(request.getParameter("rePrice"));
 		
+		
+		Water w = new Water();
+		
+		w.setWaterNo(updateWaterNum);
+		w.setBrand(reName);
+		w.setPrice(rePrice);
+		
+		
+		int result = new WaterService().updateWater(w);
+		
+		
+		if(result>0) {
+			response.sendRedirect(request.getContextPath() + "/wSelete.wo");
+			// 
+			// 새로고침 느낌
+		}
+		
+		//else {
+			//request.setAttribute("errorPage", "상품수정 실패");
+			// request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			//System.out.println("여기인가?");
+			//System.out.println(w.getWaterNo());
+		//}
 		
 		
 		

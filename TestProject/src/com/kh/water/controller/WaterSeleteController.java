@@ -1,6 +1,8 @@
 package com.kh.water.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.water.model.service.WaterService;
+import com.kh.water.model.vo.Water;
 
 /**
- * Servlet implementation class InsertWaterController
+ * Servlet implementation class WaterSeleteController
  */
-@WebServlet("/insert.wa")
-public class InsertWaterController extends HttpServlet {
+@WebServlet("/wSelete.wo")
+public class WaterSeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertWaterController() {
+    public WaterSeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +31,23 @@ public class InsertWaterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String brand = request.getParameter("brand");
-		int price = Integer.parseInt(request.getParameter("price"));
 		
-		int result = new WaterService().insertWater(brand, price);
-		System.out.println("성공했을까?" + result);
+		ArrayList<Water> list = new WaterService().selectWater();
 		
-		// request.setAttribute("brand", brand);
+		
+		request.setAttribute("list", list);
+		
+		
+		
+		request.getRequestDispatcher("views/water/updateWater.jsp").forward(request, response);
+		
+		
+		
+		
 		
 		
 	}

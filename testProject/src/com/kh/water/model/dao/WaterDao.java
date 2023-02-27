@@ -10,50 +10,66 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.water.model.vo.Water;
-
 import static com.kh.common.JDBCTemplate.*;
-
 
 public class WaterDao {
 	
-	private Properties prop = new Properties();
+	// import static com.kh.common.JDBCTemplate.*; 이거는 손수 작성해야해!!
 	
-	public WaterDao() {
+	Properties prop = new Properties();
+	
+	
+	public WaterDao(){
+		
+		String filePath = WaterDao.class.getResource("/db/sql/water-mapper.xml").getPath();
 		try {
-			prop.loadFromXML(new FileInputStream(WaterDao.class.getResource("/db/sql/water-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
+	
+	
 
-	public int insertWater(Connection conn, String brand, int price) {
-		int result = 0;
+	public int insertWater(Connection conn, Water w) {
+		
 		PreparedStatement pstmt = null;
+		
+		int result = 0;
 		
 		String sql = prop.getProperty("insertWater");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, brand);
-			pstmt.setInt(2, price);
+			pstmt.setString(1, w.getBrand());
+			pstmt.setInt(2, w.getPrice());
 			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(pstmt);
 		}
 		
-		return result;
 		
+		return result;
 	}
-	
+
+
+
 	public ArrayList<Water> selectWater(Connection conn) {
-		ArrayList<Water> list = new ArrayList<Water>();
+		
+		
 		PreparedStatement pstmt = null;
+		
 		ResultSet rset = null;
+		
+		ArrayList<Water> list = new ArrayList<Water>();
+		
 		
 		String sql = prop.getProperty("selectWater");
 		
@@ -62,45 +78,68 @@ public class WaterDao {
 			
 			rset = pstmt.executeQuery();
 			
+			
 			while(rset.next()) {
-				list.add(new Water(rset.getInt("water_no"),
-								   rset.getString("water_brand"),
-								   rset.getInt("price")));
+				list.add(new Water(
+						rset.getInt("WATER_NO")
+						, rset.getString("BRAND")
+						, rset.getInt("price")
+						));
+				
 			}
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rset);
 			close(pstmt);
 		}
 		
+	
 		return list;
-		
 	}
 
-	public int updateWater(Connection conn, String brand, int price, int waterNo) {
-		int result = 0;
+
+
+	public int updateWater(Connection conn, Water w) {
+		
 		PreparedStatement pstmt = null;
+		
+		int result = 0;
 		
 		String sql = prop.getProperty("updateWater");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, brand);
-			pstmt.setInt(2, price);
-			pstmt.setInt(3, waterNo);
+			pstmt.setString(1, w.getBrand());
+			pstmt.setInt(2, w.getPrice());
+			pstmt.setInt(3, w.getWaterNo());
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(pstmt);
 		}
+		
 		
 		return result;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
