@@ -1,0 +1,40 @@
+<br>
+        <div id="sibal">
+        <div class="header1">
+            <nav>
+                <ul id="MY-MENU">
+                    <span>&nbsp&nbsp&nbsp&nbsp&nbspMY MENU</span>
+                </ul>
+            </nav>
+        </div>
+        </div>
+        <div id="mainMenu1">
+            <nav>
+               <ul id="mainMenu">
+                <br>
+                <li><a href="#">회원정보관리</a></li> <br>
+
+                <li><a href="#">주문내역</a></li> <br>
+
+                <li><a href="#">장바구니</a></li> <br>
+
+                <li><a href="#">관심리스트</a>
+                    <ul class="subMenu">
+                        <br>
+                        <li><a href="#">찜한 상품</a></li>
+                        <li><a href="#">찜한 가게</a></li>
+                    </ul>
+                </li> <br>
+
+                <li><a href="#">후기</a>
+                    <ul class="subMenu">
+                        <br>
+                        <li><a href="#">구매후기 쓰기</a></li>
+                        <li><a href="#">내가 작성한 쓰기</a></li>
+                    </ul>
+                </li> <br>
+
+                <li><a href="#">고객센터</a></li> <br>
+               </ul>
+            </nav>
+        </div>
