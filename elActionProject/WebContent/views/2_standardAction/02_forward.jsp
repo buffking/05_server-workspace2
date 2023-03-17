@@ -13,6 +13,5 @@
 	<jsp:forward page="footer.jsp"></jsp:forward>
 	<!-- 나중에 if else 분기쳐서 나타내는 페이지 포워딩 가능 -->
 	
-	
 </body>
 </html>

@@ -45,17 +45,7 @@
 	
 	<h3>2. 커스텀액션태그(JSTL)</h3>
 	<a href="views/3_customAction/jstl.jsp">JSTL</a>
-
+	
+	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

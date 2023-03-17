@@ -54,5 +54,6 @@
 
 	big이 small 보다 크고 lOne이 텅 비어있습니까 : ${ big gt small and empty lOne} <br>	
 		
+		
 </body>
 </html>

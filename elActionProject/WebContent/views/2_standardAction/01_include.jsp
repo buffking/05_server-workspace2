@@ -40,7 +40,6 @@
 	<jsp:include page="footer.jsp">
 		<jsp:param value="bye" name="test"/>
 	</jsp:include>
-		
 	
 	
 </body>
